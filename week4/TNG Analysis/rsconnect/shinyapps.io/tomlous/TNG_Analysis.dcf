@@ -1,0 +1,9 @@
+name: TNG_Analysis
+account: tomlous
+server: shinyapps.io
+appId: 112795
+bundleId: 497981
+url: https://tomlous.shinyapps.io/TNG_Analysis/
+when: 1467837467.8825
+asMultiple: FALSE
+asStatic: FALSE
