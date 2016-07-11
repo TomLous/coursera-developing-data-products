@@ -4,7 +4,7 @@
 #
 # http://shiny.rstudio.com
 #
-
+# devtools::install_github("RMHogervorst/TNG")
 library(shiny)
 
 shinyServer(function(input, output) {
