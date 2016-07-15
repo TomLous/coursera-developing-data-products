@@ -1,0 +1,91 @@
+---
+title       : Start Trek TNG
+subtitle    : General Analysis of Dialogs & influence in rating
+author      : Tom Lous  
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+
+
+## Star Trek the Next Generation
+```{r, echo=FALSE, error=FALSE}
+library(TNG)
+load("TNGsummarized.Rda")
+#load("../TNG Analysis/TNGsummarized.Rda")
+```
+* Off the air for > 20 years
+* Continues to have huge impact on our culture & technology
+* Many (main) characters that influenced the series
+
+![](http://vignette2.wikia.nocookie.net/memoryalpha/images/0/0e/The_Next_Generation_Main_Cast_Season_1.jpg/revision/latest?cb=20091202034552&path-prefix=en)
+
+
+--- .class #id 
+
+## Show statistics
+
+```{r, echo=FALSE}
+numEpisodes <- length(unique(TNG$episode))
+numCharacters <- length(unique(TNG$who))
+numDialogs <- length(TNG$who[TNG$type=='speech'])
+numMainDialogs <- sum(resultset$numSections)
+perc <- round(numMainDialogs / numDialogs * 100)
+```
+
+
+The show had `r numEpisodes` episodes, `r numCharacters` different characters and a total of `r numDialogs` script dialogs.
+These I consider the main characters that have a calculatable impact on the show ratings
+
+```{r, echo=FALSE}
+mainCharacters
+```
+
+They account for  `r numMainDialogs` script dialogs, which is `r perc`% of all dialogs.
+
+The show ratings have a fairly high average
+```{r, echo=FALSE}
+summary(numData$imdbRating)
+```
+
+--- .class #id 
+
+## Exploration
+
+```{r, echo=FALSE}
+importanceOrder <- order(-rfMod$importance[,1])
+topImportantVariables <- rownames(rfMod$importance)[importanceOrder][1:5]
+rsq <- round(max(rfMod$rsq),3)
+mse <- round(min(rfMod$mse),3)
+```
+
+To analyze who's lines, words or sections (of dialog) have the most impact on predicting the imdbRating, a dataset was created that combined all maincharacters and their lines, words ans sections as features for the imdbRating.
+Resulting in a matrix of 
+```{r, echo=FALSE}
+dim(numData)
+```
+
+After training `r rfMod$ntree` Random Forests. The predictor on the dataset endend up with $R^2$ of `r rsq` and a MSE of `r mse`
+Which seems not great, but it probably overfitted the data, so it did a pretty good job predicting the actual ratings
+
+These were the top 5 most important variables for predicting the imdbRating
+
+```{r, echo=FALSE}
+topImportantVariables
+```
+
+--- .class #id 
+
+## Conclusion
+
+Based on these conclusions it's hard to say which character has a positive or negative impact on the ratings. First of all a dataset with `r numEpisodes` samples is hard to train on. 
+Other factors were also excluded, like the category of episode (Disaster/Monster of the week, Humanist message, Political Message, Character piece, etc, etc.) or other cateories  like (time travel, Borg, Klingon, Holodeck, etc)
+
+But that should't deter you to play around with the data [https://tomlous.shinyapps.io/TNG_Analysis/](https://tomlous.shinyapps.io/TNG_Analysis/)
+
+Live long and prosper!

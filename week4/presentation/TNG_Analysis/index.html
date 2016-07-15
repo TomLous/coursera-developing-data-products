@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Start Trek TNG</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Start Trek TNG">
+  <meta name="author" content="Tom Lous">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Start Trek TNG</h1>
+    <h2>General Analysis of Dialogs &amp; influence in rating</h2>
+    <p>Tom Lous<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Star Trek the Next Generation</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Off the air for &gt; 20 years</li>
+<li>Continues to have huge impact on our culture &amp; technology</li>
+<li>Many (main) characters that influenced the series</li>
+</ul>
+
+<p><img src="http://vignette2.wikia.nocookie.net/memoryalpha/images/0/0e/The_Next_Generation_Main_Cast_Season_1.jpg/revision/latest?cb=20091202034552&amp;path-prefix=en" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Show statistics</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The show had 175 episodes, 1861 different characters and a total of 68487 script dialogs.
+These I consider the main characters that have a calculatable impact on the show ratings</p>
+
+<pre><code>##  [1] &quot;PICARD&quot;  &quot;RIKER&quot;   &quot;GEORDI&quot;  &quot;WORF&quot;    &quot;TROI&quot;    &quot;DATA&quot;    &quot;BEVERLY&quot;
+##  [8] &quot;WESLEY&quot;  &quot;TASHA&quot;   &quot;Q&quot;
+</code></pre>
+
+<p>They account for  46815 script dialogs, which is 68% of all dialogs.</p>
+
+<p>The show ratings have a fairly high average</p>
+
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##   3.400   6.600   7.400   7.332   8.000   9.300       2
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Exploration</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>To analyze who&#39;s lines, words or sections (of dialog) have the most impact on predicting the imdbRating, a dataset was created that combined all maincharacters and their lines, words ans sections as features for the imdbRating.
+Resulting in a matrix of </p>
+
+<pre><code>## [1] 174  32
+</code></pre>
+
+<p>After training 1500 Random Forests. The predictor on the dataset endend up with \(R^2\) of 0.148 and a MSE of 0.717
+Which seems not great, but it probably overfitted the data, so it did a pretty good job predicting the actual ratings</p>
+
+<p>These were the top 5 most important variables for predicting the imdbRating</p>
+
+<pre><code>## [1] &quot;TROI.numWords&quot;     &quot;TROI.numSections&quot;  &quot;TROI.numLines&quot;    
+## [4] &quot;TASHA.numSections&quot; &quot;DATA.numSections&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Conclusion</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Based on these conclusions it&#39;s hard to say which character has a positive or negative impact on the ratings. First of all a dataset with 175 samples is hard to train on. 
+Other factors were also excluded, like the category of episode (Disaster/Monster of the week, Humanist message, Political Message, Character piece, etc, etc.) or other cateories  like (time travel, Borg, Klingon, Holodeck, etc)</p>
+
+<p>But that should&#39;t deter you to play around with the data <a href="https://tomlous.shinyapps.io/TNG_Analysis/">https://tomlous.shinyapps.io/TNG_Analysis/</a></p>
+
+<p>Live long and prosper!</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Star Trek the Next Generation'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Show statistics'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Exploration'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Conclusion'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
