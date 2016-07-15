@@ -2,6 +2,7 @@
 library(shiny)
 library(ggvis)
 library(ggplot2)
+library(randomForest)
 
 shinyServer(function(input, output) {
 
@@ -82,6 +83,8 @@ shinyServer(function(input, output) {
   
   
   linesPlot %>% bind_shiny("numlinesplot")
+  
+  output$varimpplot <-renderPlot({ varImpPlot(rfMod) },width = "auto", height = 500)
   
  # ratingsPlot <- reactive({
 #    select(ratings, episodeNum, imdbRating, predictions) %>% 

@@ -24,7 +24,7 @@ getTermMatrix <- memoise(function(i_character, i_episodes) {
   myCorpus = tm_map(myCorpus, removePunctuation)
   myCorpus = tm_map(myCorpus, removeNumbers)
   myCorpus = tm_map(myCorpus, removeWords,
-                    c(stopwords("SMART"), "ill", "ive", "im", "youll","youve","youre","hell","hes","shell","shes", "well", "weve", "were","theyll", "theyve", "theyre", "and", "but","wont","dont"))
+                    c(stopwords("SMART"), "ill", "ive", "im", "youll","youve","youre","hell","hes","shell","shes", "well", "weve", "were","theyll", "theyve", "theyre", "and", "but","wont","dont","isnt"))
   
   myDTM = TermDocumentMatrix(myCorpus,
                              control = list(minWordLength = 1))

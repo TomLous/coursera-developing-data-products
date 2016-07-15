@@ -26,6 +26,10 @@ shinyUI(fluidPage(
        wellPanel(
          h4("#lines per character & (predicted) ratings for each episode"), 
          ggvisOutput("numlinesplot")
+       ),
+       wellPanel(
+         h4("Var importance plot of the predictions"), 
+         plotOutput("varimpplot")
        )
     )
   )
